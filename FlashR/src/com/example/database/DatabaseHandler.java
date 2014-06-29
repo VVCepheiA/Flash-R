@@ -74,7 +74,23 @@ public class DatabaseHandler extends SQLiteOpenHelper{
     }
      
     // Getting All Contacts
-//    public List<Event> getDayEvents() {}
+    public List<Event> getDayEvents(String dateTime) {
+    	SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_EVENTS, new String[] { KEY_DATETIME, KEY_EVENTNAME }, 
+        		KEY_DATETIME + " LIKE " + dateTime, null, null, null, null);
+        ArrayList<Event> eventList = new ArrayList<Event>();
+        
+        if (cursor != null)
+        	cursor.moveToFirst();
+                
+        while(!cursor.isAfterLast()) {
+            Event event = new Event(cursor.getString(0),cursor.getString(1));
+            eventList.add(event);
+            cursor.moveToNext();
+        }
+        
+        return eventList;
+    }
      
     // Getting contacts Count
     public int getEventCount(String dateTime) {
