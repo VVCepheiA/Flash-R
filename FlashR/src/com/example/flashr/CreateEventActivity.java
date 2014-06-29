@@ -2,19 +2,19 @@ package com.example.flashr;
 
 import java.util.List;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.util.Log;
 
 import com.example.database.DatabaseHandler;
 import com.example.database.Event;
@@ -22,7 +22,8 @@ import com.example.database.Event;
 public class CreateEventActivity extends ActionBarActivity {
 	
 	private static String dateTime;
-	TimePicker eventTime;
+	private String date;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class CreateEventActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_create_event);
 		
 		String createOrEdit = "create";
-		String date = "20140629";
+		date = "testtesttest";
 		
 		if (createOrEdit.equals("create")){
 			TextView create = (TextView)findViewById(R.id.createOrEdit);
@@ -40,19 +41,39 @@ public class CreateEventActivity extends ActionBarActivity {
             edit.setText("Edit");
 		}
 		
-		eventTime = ((TimePicker) findViewById(R.id.eventTime));
-	    eventTime.clearFocus();
-
-	    int hour = eventTime.getCurrentHour();
-	    int minute = eventTime.getCurrentMinute();
-	    
-	    dateTime = date + Integer.toString(hour) + Integer.toString(minute);
+//	    Bundle b = this.getIntent().getExtras();
+//	    String[] array = b.getStringArray("dateData");
+		String[] array = {"1900","12","24"};
+	    date = array[0]+array[1]+array[2];
 				
 	}
 	
 	public void onCreateClick(View view){
+		EditText eNameTmp   = (EditText)findViewById(R.id.editText1);
+		String eName = eNameTmp.getText().toString();
+		
+		
+		TimePicker eventTime;
+		eventTime = ((TimePicker) findViewById(R.id.eventTime));
+	    eventTime.clearFocus();
+	    
+	    int hour = eventTime.getCurrentHour();
+	    int minute = eventTime.getCurrentMinute();
+	    String hourS = "";
+	    String minuteS = "";
+	    if (hour<10)
+	    	hourS = "0" + Integer.toString(hour);
+	    else
+	    	hourS = Integer.toString(hour);
+	    if (minute<10)
+	    	minuteS = "0" + Integer.toString(minute);
+	    else
+	    	minuteS =  Integer.toString(minute);
+	    	    
+	    dateTime = date + hourS + minuteS;
+		
 		DatabaseHandler db = new DatabaseHandler(this);
-		db.addEvent(new Event(dateTime,"Content"));
+		db.addEvent(new Event(dateTime,eName));
 		Log.w("Reading: ", "Reading all contacts.."); 
         List<Event> event = db.getAllContacts();       
          
