@@ -61,7 +61,7 @@ public class CalendarActivity extends ActionBarActivity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
-		private int[][] month = new int[12][35];
+		private int[][] month = new int[12][42];
 		private int[] totalMonthDays = new int[]{
 			31,	28,31,30,31,30,31,31,30,31,30,31
 		};
@@ -99,7 +99,7 @@ public class CalendarActivity extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_calendar,
+			final View rootView = inflater.inflate(R.layout.fragment_calendar,
 					container, false);
 			populateDays();
 			TextView tv = (TextView)rootView.findViewById(R.id.yearMonthDisplay);
@@ -121,13 +121,13 @@ public class CalendarActivity extends ActionBarActivity {
 			leftBtn.setOnClickListener(new OnClickListener() {
 			    public void onClick(View v)
 			    {
-			        moveDateLeft(v);
+			        moveDateLeft(rootView);
 			    } 
 			});
 			rightBtn.setOnClickListener(new OnClickListener() {
 			    public void onClick(View v)
 			    {
-			        moveDateRight(v);
+			        moveDateRight(rootView);
 			    } 
 			});
 			
@@ -171,11 +171,21 @@ public class CalendarActivity extends ActionBarActivity {
 		private void populateDays(){
 			Calendar c = Calendar.getInstance();
 			c.set(Calendar.YEAR, 2014);
-			c.set(Calendar.WEEK_OF_YEAR, 1);
+			c.set(Calendar.MONTH, 1);
 			c.set(Calendar.DAY_OF_YEAR,0);
-			int minDay = c.get(Calendar.DAY_OF_WEEK);
-			int beginDay = 31-(7-minDay)+2;
-			if(beginDay == 0){
+			for(int i=0;i<12;i++){
+				c.set(Calendar.YEAR, 2014);
+				c.set(Calendar.MONTH, i+1);
+				c.set(Calendar.DAY_OF_YEAR,0);
+				int minDay = c.get(Calendar.DAY_OF_WEEK);
+				int beginDay = 1;
+				int totalDays = totalMonthDays[curMonth];
+				for(int d=minDay;d<=totalDays+minDay-1;d++){
+					month[i][d] = beginDay;
+					beginDay++;
+				}
+			}
+			/*if(beginDay == 0){
 				beginDay++;
 			}
 			for(int curMonth = 0;curMonth<12;curMonth++){
@@ -187,11 +197,11 @@ public class CalendarActivity extends ActionBarActivity {
 						beginDay++;
 					}
 				}
-				beginDay = (beginDay-7+1+totalDays)%totalDays;
+				beginDay = (beginDay-7+totalDays-1)%totalDays;
 				if(beginDay == 0){
 					beginDay++;
 				}
-			}
+			}*/
 		}
 		
 		private int getCurMonth(TextView tv){
@@ -225,7 +235,7 @@ public class CalendarActivity extends ActionBarActivity {
 		}
 		public void moveDateLeft(View view){
 			curMonth--;
-			//setValues(view);
+			setValues(view);
 		}
 		public void moveDateRight(View view){
 			curMonth++;
