@@ -21,8 +21,8 @@ import com.example.database.Event;
 
 public class CreateEventActivity extends ActionBarActivity {
 	
-	public String dateTime;
-	TimePicker notifyTime;
+	private static String dateTime;
+	TimePicker eventTime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,7 @@ public class CreateEventActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_create_event);
 		
 		String createOrEdit = "create";
+		String date = "20140629";
 		
 		if (createOrEdit.equals("create")){
 			TextView create = (TextView)findViewById(R.id.createOrEdit);
@@ -39,13 +40,13 @@ public class CreateEventActivity extends ActionBarActivity {
             edit.setText("Edit");
 		}
 		
-		notifyTime = ((TimePicker) findViewById(R.id.eventTime));
-	    notifyTime.clearFocus();
+		eventTime = ((TimePicker) findViewById(R.id.eventTime));
+	    eventTime.clearFocus();
 
-	    int hour = notifyTime.getCurrentHour();
-	    int minute = notifyTime.getCurrentMinute();
+	    int hour = eventTime.getCurrentHour();
+	    int minute = eventTime.getCurrentMinute();
 	    
-	    dateTime = "20140629"+ Integer.toString(hour) + Integer.toString(minute);
+	    dateTime = date + Integer.toString(hour) + Integer.toString(minute);
 				
 	}
 	
