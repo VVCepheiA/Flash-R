@@ -1,5 +1,8 @@
 package com.example.flashr;
 
+import java.util.List;
+
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.util.Log;
 
 import com.example.database.DatabaseHandler;
 import com.example.database.Event;
@@ -48,6 +52,17 @@ public class CreateEventActivity extends ActionBarActivity {
 	public void onCreateClick(View view){
 		DatabaseHandler db = new DatabaseHandler(this);
 		db.addEvent(new Event(dateTime,"Content"));
+		Log.w("Reading: ", "Reading all contacts.."); 
+        List<Event> event = db.getAllContacts();       
+         
+        for (Event cn : event) {
+            String log = "DateTime: " + cn.getDateTime() + " ,EventName: " + cn.getEventName();
+                // Writing Contacts to log
+            Log.d("Name: ", log);
+        }
+        db.close();
+        
+        toCalendarActivity();
 	}
 
 	@Override

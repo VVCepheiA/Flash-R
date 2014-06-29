@@ -1,5 +1,6 @@
 package com.example.database;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -83,6 +84,29 @@ public class DatabaseHandler extends SQLiteOpenHelper{
          cursor.close(); 
          // return count
          return cursor.getCount();
+    }
+    
+    public List<Event> getAllContacts() {
+        List<Event> eventList = new ArrayList<Event>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_EVENTS;
+ 
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+ 
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Event event = new Event();
+                event.setDateTime(cursor.getString(0));
+                event.setEventName(cursor.getString(1));
+                // Adding contact to list
+                eventList.add(event);
+            } while (cursor.moveToNext());
+        }
+ 
+        // return contact list
+        return eventList;
     }
     
     // Updating single contact
