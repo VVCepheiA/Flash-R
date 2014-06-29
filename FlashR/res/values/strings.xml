@@ -7,5 +7,7 @@
     <string name="title_activity_calendar">CalendarActivity</string>
     <string name="title_activity_create_event">CreateEventActivity</string>
     <string name="title_activity_edit_event">EditEventActivity</string>
+    <string name="eventTime">Event Time</string>
+
 
 </resources>
