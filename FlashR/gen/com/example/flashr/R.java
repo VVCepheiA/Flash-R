@@ -1011,6 +1011,7 @@ containing a value of this type.
         public static final int editText1=0x7f050040;
         public static final int edit_query=0x7f050030;
         public static final int end=0x7f050013;
+        public static final int eventTime=0x7f05003e;
         public static final int expand_activities_button=0x7f050026;
         public static final int expanded_menu=0x7f05002c;
         public static final int home=0x7f050014;
@@ -1046,7 +1047,6 @@ containing a value of this type.
         public static final int t1=0x7f05003d;
         public static final int tabMode=0x7f050002;
         public static final int textView1=0x7f05003f;
-        public static final int timePicker1=0x7f05003e;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
         public static final int up=0x7f050021;

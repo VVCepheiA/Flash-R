@@ -15,7 +15,7 @@
         android:text="@string/eventTime" />
 
     <TimePicker
-        android:id="@+id/timePicker1"
+        android:id="@+id/eventTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/t1"
@@ -26,7 +26,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/timePicker1"
+        android:layout_alignLeft="@+id/eventTime"
         android:layout_centerVertical="true"
         android:text="Event Name:" />
 
@@ -50,7 +50,8 @@
         android:layout_alignLeft="@+id/editText1"
         android:layout_below="@+id/editText1"
         android:layout_marginTop="22dp"
-        android:text="Create" />
+        android:text="Create" 
+        android:onClick="onCreateClick"/>
 
     <Button
         android:id="@+id/cancel"

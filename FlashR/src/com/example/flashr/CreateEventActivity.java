@@ -9,19 +9,45 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.TimePicker;
+
+import com.example.database.DatabaseHandler;
+import com.example.database.Event;
 
 public class CreateEventActivity extends ActionBarActivity {
+	
+	public String dateTime;
+	TimePicker notifyTime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_event);
-
-		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
+		
+		String createOrEdit = "create";
+		
+		if (createOrEdit.equals("create")){
+			TextView create = (TextView)findViewById(R.id.createOrEdit);
+            create.setText("Create");
+		}else{
+			TextView edit = (TextView)findViewById(R.id.createOrEdit);
+            edit.setText("Edit");
 		}
 		
+		notifyTime = ((TimePicker) findViewById(R.id.eventTime));
+	    notifyTime.clearFocus();
+
+	    int hour = notifyTime.getCurrentHour();
+	    int minute = notifyTime.getCurrentMinute();
+	    
+	    dateTime = "20140629"+ Integer.toString(hour) + Integer.toString(minute);
+				
+	}
+	
+	public void onCreateClick(View view){
+		DatabaseHandler db = new DatabaseHandler(this);
+		db.addEvent(new Event(dateTime,"Content"));
 	}
 
 	@Override
@@ -57,6 +83,8 @@ public class CreateEventActivity extends ActionBarActivity {
 	 * A placeholder fragment containing a simple view.
 	 */
 	public static class PlaceholderFragment extends Fragment {
+		TimePicker notifyTime;
+		
 
 		public PlaceholderFragment() {
 		}
@@ -65,15 +93,12 @@ public class CreateEventActivity extends ActionBarActivity {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_create_event,
-					container, false);
-			
-//            TextView test = (TextView)rootView.findViewById(R.id.t1);
-//            test.setText("Testest");
-			
+					container, false);		
 			return rootView;
 		}
+		
+		
 	}
 	
 	
-
 }
