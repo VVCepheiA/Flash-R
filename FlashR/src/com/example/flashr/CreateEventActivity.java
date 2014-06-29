@@ -41,9 +41,9 @@ public class CreateEventActivity extends ActionBarActivity {
             edit.setText("Edit");
 		}
 		
-//	    Bundle b = this.getIntent().getExtras();
-//	    String[] array = b.getStringArray("dateData");
-		String[] array = {"1900","12","24"};
+	    Bundle b = this.getIntent().getExtras();
+	    String[] array = b.getStringArray("dateData");
+//		String[] array = {"1900","12","24"};
 	    date = array[0]+array[1]+array[2];
 				
 	}

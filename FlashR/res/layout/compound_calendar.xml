@@ -1,0 +1,128 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res/com.example.customviews"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.flashr.CalendarActivity$PlaceholderFragment" >
+
+    <TextView
+        android:id="@+id/headingBar"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#000000"
+        />
+
+    <Button
+        android:id="@+id/leftBtn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/headingBar"
+        android:layout_below="@+id/headingBar"
+        android:onClick="moveDateLeft"
+       />
+
+    <TextView
+        android:id="@+id/yearMonthDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/leftBtn"
+        android:layout_alignTop="@+id/leftBtn"
+        android:layout_toLeftOf="@+id/rightBtn"
+        android:layout_toRightOf="@+id/leftBtn"
+        android:background="#ABC123"
+        android:gravity="center"
+        />
+
+    <Button
+        android:id="@+id/rightBtn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignRight="@+id/headingBar"
+        android:layout_alignTop="@+id/yearMonthDisplay"
+        android:onClick="moveDateRight"
+        />
+
+    <TextView
+        android:id="@+id/sunText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/leftBtn"
+        android:layout_below="@+id/leftBtn"
+        android:text="  Sun   " />
+
+    <GridView
+        android:id="@+id/gridView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sunText"
+        android:layout_below="@+id/sunText"
+        android:numColumns="7" >
+    </GridView>
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/gridView1"
+        android:layout_below="@+id/gridView1" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/tuesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/gridView1"
+        android:layout_toRightOf="@+id/monText"
+        android:text=" Tues  " />
+
+    <TextView
+        android:id="@+id/monText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sunText"
+        android:layout_alignBottom="@+id/sunText"
+        android:layout_toRightOf="@+id/sunText"
+        android:text="  Mon   " />
+
+    <TextView
+        android:id="@+id/wedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tuesText"
+        android:layout_alignBottom="@+id/tuesText"
+        android:layout_toRightOf="@+id/tuesText"
+        android:text=" Wed   " />
+
+    <TextView
+        android:id="@+id/thurText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/gridView1"
+        android:layout_toRightOf="@+id/wedText"
+        android:text=" Thur  " />
+
+    <TextView
+        android:id="@+id/friText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/gridView1"
+        android:layout_toRightOf="@+id/thurText"
+        android:text="  Fri   " />
+
+    <TextView
+        android:id="@+id/satText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/gridView1"
+        android:layout_toRightOf="@+id/friText"
+        android:text="   Sat  " />
+	
+</RelativeLayout>
